@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { addRoom } from "../utils/ApiFunctions";
+import RoomTypeSelector from "../common/RoomTypeSelector";
 
 const AddRoom = () => {
     
@@ -18,16 +19,14 @@ const AddRoom = () => {
         let value = e.target.value
         if(name === "roomPrice"){
             if(!isNaN(value)){
-                value.pasreInt(value)
-        
+                value = parseInt(value)
             }else{
                 value = ""
             }
         }
-
-        setNewRoom({...newRoom,[name]:value})
-
+        setNewRoom({ ...newRoom, [name]: value })
     }
+
 
     const handleImageChange = (e) => {
         const selectedImage = e.target.files[0]
@@ -55,7 +54,7 @@ const AddRoom = () => {
 
     return(
       <>
-        <section className="container, mt-5 mb-5">
+        <section className="container mt-5 mb-5">
             <div className="row justify-content-center">
                 <div className="col-md-8 col-lg-6">
                     <h2 className="mt-5 mb-2">Add a New Room</h2>
@@ -63,7 +62,47 @@ const AddRoom = () => {
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3">
                             <label htmlFor="roomType" className="form-label">Room Type</label>
-                            <div></div>
+                            <div>
+                                <RoomTypeSelector handleRoomInputChange={handleRoomInputChange} 
+                                newRoom={newRoom}/>
+                            </div>
+                        </div>
+
+                        <div className="mb-3">
+                            <label htmlFor="roomPrice" className="form-label">Room Price</label>
+                            <input 
+                                className="form-control" 
+                                required 
+                                id="roomPrice" 
+                                name="roomPrice"
+                                type="number" 
+                                value={newRoom.roomPrice} 
+                                onChange={handleRoomInputChange}
+                            />
+                        </div>
+
+                        <div className="mb-3">
+                            <label htmlFor="photo" className="form-label">Room Photo</label>
+                            <input 
+                                id="photo"
+                                name="photo"
+                                type="file"
+                                className="form-control"
+                                onChange={handleImageChange}
+                            />
+                            {imagePreview && (
+                                <img 
+                                    src={imagePreview} 
+                                    alt="Preview Room Photo" 
+                                    style={{maxWidth:"400px", maxHeight:"400px"}} 
+                                    className="mb-3"
+                                />
+                            )}
+                        </div>
+                        <div className="d-grid d-md-flex mt-2">
+                            <button className="btn btn-outline-primary ml-5">
+                                Save Room
+                            </button>
                         </div>
                     </form>
                 </div>
