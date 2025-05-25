@@ -23,11 +23,13 @@ export async function addRoom(photo, roomType, roomPrice) {
 
 
 // DB에서 룸타입을 불러옴
-export async function getRoomTypes(){
-    try{
-        const response = await api.get("/rooms/room-types")
-        return response.data
-    }catch(error){
-        throw new Error("Error fetching room types")
-    }
+export async function getRoomTypes() {
+	try {
+		const response = await api.get("/rooms/room/types")
+        
+		return response.data
+	} catch (error) {
+        
+		throw new Error("Error fetching room types")
+	}
 }

@@ -35,22 +35,27 @@ const AddRoom = () => {
 
     }
 
-    const handleSubmit = async(e) => {
-        e.preventDefault()
-        try{
-            const success = await addRoom(newRoom.photo,newRoom.roomType,newRoom.roomPrice)
-            if(success !== undefined){
-                setSuccessMessage("A new room was added to the database!")
-                setNewRoom({photo: null, roomType: "", roomPrice:""})
-                setImagePreview("")
-                setErrorMessage("")
-            }else{
-                setErrorMessage("Error adding room")
-            }
-        }catch(error){
-            setErrorMessage(error.message)
-        }
-    }
+	const handleSubmit = async (e) => {
+		e.preventDefault()
+		try {
+			const success = await addRoom(newRoom.photo, newRoom.roomType, newRoom.roomPrice)
+			if (success !== undefined) {
+				setSuccessMessage("A new room was  added successfully !")
+				setNewRoom({ photo: null, roomType: "", roomPrice: "" })
+				setImagePreview("")
+				setErrorMessage("")
+			} else {
+				setErrorMessage("Error adding new room")
+			}
+		} catch (error) {
+			setErrorMessage(error.message)
+		}
+		setTimeout(() => {
+			setSuccessMessage("")
+			setErrorMessage("")
+		}, 3000)
+	}
+
 
     return(
       <>
@@ -58,6 +63,12 @@ const AddRoom = () => {
             <div className="row justify-content-center">
                 <div className="col-md-8 col-lg-6">
                     <h2 className="mt-5 mb-2">Add a New Room</h2>
+
+                    {successMessage && (
+                        <div className="alert alert-success fade show">{successMessage}</div>
+                    )}
+
+                    {errorMessage && <div className="alert alert-danger fade show">{errorMessage}</div>}
 
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3">
@@ -95,7 +106,7 @@ const AddRoom = () => {
                                     src={imagePreview} 
                                     alt="Preview Room Photo" 
                                     style={{maxWidth:"400px", maxHeight:"400px"}} 
-                                    className="mb-3"
+                                    className="mt-2 mb-3"
                                 />
                             )}
                         </div>

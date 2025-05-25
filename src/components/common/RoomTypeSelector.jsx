@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { getRoomTypes } from "../utils/ApiFunctions";
 
 const RoomTypeSelector = ({handleRoomInputChange, newRoom}) => {
-    const [roomTypes, setRoomType] = useState([""])
+    const [roomTypes, setRoomTypes] = useState([""])
     const [showNewRoomTypeInput, setShowNewRoomTypesInput] = useState(false)
     const[newRoomType, setNewRoomType] = useState("")
     
     useEffect(()=>{
         getRoomTypes().then((data)=>{
-            setRoomType(data)
+            setRoomTypes(data)
         })
     }, [])
 
@@ -18,7 +18,7 @@ const RoomTypeSelector = ({handleRoomInputChange, newRoom}) => {
 
     const handleAddNewRoomType = () => {
         if(newRoomType !== ""){
-            setRoomType([...roomTypes,newRoomType])
+            setRoomTypes([...roomTypes,newRoomType])
             setNewRoomType("")
             setShowNewRoomTypesInput(false)
         }
@@ -32,6 +32,8 @@ const RoomTypeSelector = ({handleRoomInputChange, newRoom}) => {
                         <select
                             id="roomType"
                             name="roomType"
+                            required
+                            className="form-select"
                             value={newRoom.roomType}
                             onChange={(e)=>{
                                 if(e.target.value === "Add New"){
@@ -56,9 +58,10 @@ const RoomTypeSelector = ({handleRoomInputChange, newRoom}) => {
                                         className="form-control"
                                         type="text"
                                         placeholder="Enter a new room type"
+                                        value={newRoomType}
                                         onChange={handleNewRoomTypeInputChange}
                                     />
-                                    <button className="btn btn-hotel" type="button" onClick={handleAddNewRoomType}>
+                                    <button className="btn btn-primary" type="button" onClick={handleAddNewRoomType}>
                                         Add
                                     </button>
 
