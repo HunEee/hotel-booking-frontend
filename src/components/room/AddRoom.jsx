@@ -40,7 +40,7 @@ const AddRoom = () => {
 		try {
 			const success = await addRoom(newRoom.photo, newRoom.roomType, newRoom.roomPrice)
 			if (success !== undefined) {
-				setSuccessMessage("A new room was  added successfully !")
+				setSuccessMessage("방이 성공적으로 등록되었습니다!")
 				setNewRoom({ photo: null, roomType: "", roomPrice: "" })
 				setImagePreview("")
 				setErrorMessage("")
