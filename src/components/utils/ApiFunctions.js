@@ -52,3 +52,25 @@ export async function deleteRoom(roomId){
         throw new Error(`Error deleting room ${error.message}`)
     }
 }
+
+// 객실 정보 수정
+export async function updateRoom(roomId, roomData) {
+	const formData = new FormData()
+	formData.append("roomType", roomData.roomType)
+	formData.append("roomPrice", roomData.roomPrice)
+	formData.append("photo", roomData.photo)
+	const response = await api.put(`/rooms/update/${roomId}`, formData,{
+		headers: getHeader()
+	})
+	return response
+}
+
+// 객실 정보 가져옴옴
+export async function getRoomById(roomId) {
+	try {
+		const result = await api.get(`/rooms/room/${roomId}`)
+		return result.data
+	} catch (error) {
+		throw new Error(`Error fetching room ${error.message}`)
+	}
+}
