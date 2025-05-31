@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const RoomFiler = ({data, setFilteredData}) => {
+const RoomFilter = ({data, setFilteredData}) => {
 
     const [filter, setFilter] = useState("")
     const handleSelectChange = (e) => {
@@ -41,4 +41,4 @@ const RoomFiler = ({data, setFilteredData}) => {
     )
 }
 
-export default RoomFiler
+export default RoomFilter

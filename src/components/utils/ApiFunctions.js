@@ -59,13 +59,11 @@ export async function updateRoom(roomId, roomData) {
 	formData.append("roomType", roomData.roomType)
 	formData.append("roomPrice", roomData.roomPrice)
 	formData.append("photo", roomData.photo)
-	const response = await api.put(`/rooms/update/${roomId}`, formData,{
-		headers: getHeader()
-	})
+	const response = await api.put(`/rooms/update/${roomId}`, formData)
 	return response
 }
 
-// 객실 정보 가져옴옴
+// 객실 정보 가져옴
 export async function getRoomById(roomId) {
 	try {
 		const result = await api.get(`/rooms/room/${roomId}`)
