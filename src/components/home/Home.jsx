@@ -1,11 +1,23 @@
-import React from "react";
+import HotelService from "../common/HotelService";
+import Parallax from "../common/Parallax";
+import RoomCarousel from "../common/RoomCarousel";
+import MainHeader from "../layout/MainHeader";
 
 
 const Home = () => {
     return (
-        <div>
-                <h2> 환영합니다 </h2>
-        </div>
+        <section>
+            <MainHeader />
+            <section className="container">
+                <RoomCarousel />
+                <Parallax />
+                <RoomCarousel />
+                <HotelService />
+                <Parallax />
+                <RoomCarousel />
+
+            </section>
+        </section>
     )
 
 }

@@ -1,5 +1,6 @@
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import "/node_modules/bootstrap/dist/js/bootstrap.min.js"
+import './index.css';
 import Home from "./components/home/Home"
 import AddRoom from './components/room/AddRoom'
 import ExistingRooms from "./components/room/ExistingRooms"
@@ -8,6 +9,7 @@ import { BrowserRouter as Router, Routes, Route, BrowserRouter } from "react-rou
 import Footer from "./components/layout/Footer"
 import NavBar from "./components/layout/NavBar"
 import RoomListing from "./components/room/RoomListing"
+import Admin from "./components/adimin/Admin"
 
 function App() {
   return (
@@ -21,6 +23,7 @@ function App() {
             <Route path="/existing-rooms" element={<ExistingRooms />} />
             <Route path="/add-room" element={<AddRoom />} />
             <Route path="/browse-all-rooms" element={<RoomListing />} />
+            <Route path="/admin" element={<Admin />} />
           </Routes>
       </Router>
       <Footer />
