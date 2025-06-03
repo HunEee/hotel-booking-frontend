@@ -72,3 +72,63 @@ export async function getRoomById(roomId) {
 		throw new Error(`Error fetching room ${error.message}`)
 	}
 }
+
+// 예약관련 API
+export async function bookRoom(roomId, booking) {
+	try {
+		const response = await api.post(`/bookings/room/${roomId}/booking`, booking)
+		return response.data
+	} catch (error) {
+		if (error.response && error.response.data) {
+			throw new Error(error.response.data)
+		} else {
+			throw new Error(`Error booking room : ${error.message}`)
+		}
+	}
+}
+
+// 모든 예약 조회 API
+export async function getAllBookings() {
+	try {
+		const result = await api.get("/bookings/all-bookings")
+		return result.data
+	} catch (error) {
+		throw new Error(`Error fetching bookings : ${error.message}`)
+	}
+}
+
+// 예약확인 코드 조회 API
+export async function getBookingByConfirmationCode(confirmationCode) {
+	try {
+		const result = await api.get(`/bookings/confirmation/${confirmationCode}`)
+		return result.data
+	} catch (error) {
+		if (error.response && error.response.data) {
+			throw new Error(error.response.data)
+		} else {
+			throw new Error(`Error find booking : ${error.message}`)
+		}
+	}
+}
+
+//예약 취소 API
+export async function cancelBooking(bookingId) {
+	try {
+		const result = await api.delete(`/bookings/booking/${bookingId}/delete`)
+		return result.data
+	} catch (error) {
+		throw new Error(`Error cancelling booking :${error.message}`)
+	}
+}
+
+// 이용가능한 방 조회 API
+export async function getAvailableRooms(checkInDate, checkOutDate, roomType) {
+	const result = await api.get(
+		`rooms/available-rooms?checkInDate=${checkInDate}
+		&checkOutDate=${checkOutDate}&roomType=${roomType}`
+	)
+	return result
+}
+
+
+
