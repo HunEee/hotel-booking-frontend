@@ -1,6 +1,7 @@
-import "react-date-range/dist/style.css"
-import "react-date-range/dist/theme/default.css"
-import { DateRangePicker } from "react-date-range"
+import { useState } from "react"
+import { DateRangePicker } from 'react-date-range';
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'; // theme css file
 
 const DateSlider = ({ onDateChange, onFilterChange }) => {
     

@@ -3,31 +3,33 @@ import { useState, useEffect } from "react"
 import DateSlider from "../common/DateSlider"
 
 
-const BookingsTable = () => {
+const BookingsTable = ({ bookingInfo, handleBookingCancellation }) => {
 
     const [filteredBookings, setFilteredBookings] = useState(bookingInfo)
 
-	const filterBooknigs = (startDate, endDate) => {
+	const filterBookings = (startDate, endDate) => {
 		let filtered = bookingInfo
 		if (startDate && endDate) {
 			filtered = bookingInfo.filter((booking) => {
-				const bookingStarDate = parseISO(booking.checkInDate)
-				const bookingEndDate = parseISO(booking.checkOutDate)
-				return (
-					bookingStarDate >= startDate && bookingEndDate <= endDate && bookingEndDate > startDate
-				)
+				const checkIn = new Date(booking.checkInDate)
+				const checkOut = new Date(booking.checkOutDate)
+
+				if (isNaN(checkIn.getTime()) || isNaN(checkOut.getTime())) return false
+
+				return checkIn >= startDate && checkOut <= endDate && checkOut > startDate
 			})
 		}
-		setFilteredBookings(filtered)
+		setFilteredBookings(filtered);
 	}
+
 
 	useEffect(() => {
 		setFilteredBookings(bookingInfo)
 	}, [bookingInfo])
 
     return (
-        <section className="p-4">
-			<DateSlider onDateChange={filterBooknigs} onFilterChange={filterBooknigs} />
+       		<section className="p-4">
+			<DateSlider onDateChange={filterBookings} onFilterChange={filterBookings} />
 			<table className="table table-bordered table-hover shadow">
 				<thead>
 					<tr>
@@ -72,7 +74,7 @@ const BookingsTable = () => {
 					))}
 				</tbody>
 			</table>
-			{filterBooknigs.length === 0 && <p> No booking found for the selected dates</p>}
+			{filteredBookings.length === 0 && <p> No booking found for the selected dates</p>}
 		</section>
     )
 }
