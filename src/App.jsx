@@ -12,6 +12,7 @@ import Admin from "./components/adimin/Admin"
 import Checkout from "./components/booking/Checkout"
 import BookingSuccess from "./components/booking/BookingSuccess"
 import Bookings from "./components/booking/Bookings"
+import FindBooking from "./components/booking/FindBooking"
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path="/admin" element={<Admin />} />
             <Route path="/booking-success" element ={<BookingSuccess />} />
             <Route path="/existing-bookings" element ={<Bookings />} />
+            <Route path="/find-booking" element ={<FindBooking />} />
           </Routes>
       </Router>
       <Footer />
