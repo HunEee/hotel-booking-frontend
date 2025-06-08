@@ -67,7 +67,7 @@ const FindBooking = () => {
 		try {
 			await cancelBooking(bookingInfo.id)
 			setIsDeleted(true)
-			setSuccessMessage("Booking has been cancelled successfully!")
+			setSuccessMessage("예약이 성공적으로 취소되었습니다!")
 			setBookingInfo(emptyBookingInfo)
 			setConfirmationCode("")
 			setError(null)
@@ -103,7 +103,7 @@ const FindBooking = () => {
 				</form>
 
 				{isLoading ? (
-					<div>Finding your booking...</div>
+					<div>find booking...</div>
 				) : error ? (
 					<div className="text-danger">Error: {error}</div>
 				) : bookingInfo.bookingConfirmationCode ? (
@@ -130,7 +130,7 @@ const FindBooking = () => {
 							<button
 								onClick={() => handleBookingCancellation(bookingInfo.id)}
 								className="btn btn-danger">
-								Cancel Booking
+								예약 취소
 							</button>
 						)}
 					</div>
