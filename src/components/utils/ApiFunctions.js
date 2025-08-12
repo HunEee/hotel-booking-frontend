@@ -4,6 +4,17 @@ export const api = axios.create({
     baseURL : "http://localhost:9192"
 })
 
+
+// Auth 관련 헤더
+export const getHeader = () => {
+	const token = localStorage.getItem("token")
+	return {
+		Authorization: `Bearer ${token}`,
+		"Content-Type": "application/json"
+	}
+}
+
+
 //DB에 객실 등록
 export async function addRoom(photo, roomType, roomPrice) {
     const formData = new FormData()
