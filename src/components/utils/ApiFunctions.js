@@ -130,5 +130,44 @@ export async function getAvailableRooms(checkInDate, checkOutDate, roomType) {
 	return result
 }
 
+// 회원가입
+export async function registerUser(registration) {
+	try {
+		const response = await api.post("/auth/register-user", registration)
+		return response.data
+	} catch (error) {
+		if (error.reeponse && error.response.data) {
+			throw new Error(error.response.data)
+		} else {
+			throw new Error(`User registration error : ${error.message}`)
+		}
+	}
+}
 
+// 로그인 
+export async function loginUser(login) {
+	try {
+		const response = await api.post("/auth/login", login)
+		if (response.status >= 200 && response.status < 300) {
+			return response.data
+		} else {
+			return null
+		}
+	} catch (error) {
+		console.error(error)
+		return null
+	}
+}
+
+// 유저 프로필 조회
+export async function getUserProfile(userId, token) {
+	try {
+		const response = await api.get(`users/profile/${userId}`, {
+			headers: getHeader()
+		})
+		return response.data
+	} catch (error) {
+		throw error
+	}
+}
 
