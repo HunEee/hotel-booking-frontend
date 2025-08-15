@@ -182,3 +182,39 @@ export async function getUserProfile(userId, token) {
 	}
 }
 
+// 프로필에서 유저 삭제 호출
+export async function deleteUser(userId) {
+	try {
+		const response = await api.delete(`/users/delete/${userId}`, {
+			headers: getHeader()
+		})
+		return response.data
+	} catch (error) {
+		return error.message
+	}
+}
+
+// 프로필에 유저 데이터 넘겨주기
+export async function getUser(userId, token) {
+	try {
+		const response = await api.get(`/users/${userId}`, {
+			headers: getHeader()
+		})
+		return response.data
+	} catch (error) {
+		throw error
+	}
+}
+
+// 프로필에 유저 예약정보 념겨주기
+export async function getBookingsByUserId(userId, token) {
+	try {
+		const response = await api.get(`/bookings/user/${userId}/bookings`, {
+			headers: getHeader()
+		})
+		return response.data
+	} catch (error) {
+		console.error("Error fetching bookings:", error.message)
+		throw new Error("Failed to fetch bookings")
+	}
+}
