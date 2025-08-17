@@ -11,7 +11,7 @@ const Login = () => {
 	})
 
 	const navigate = useNavigate()
-	const auth = useAuth()
+	const auth = useAuth() // Auth 컴포넌트
 	const location = useLocation()
 	const redirectUrl = location.state?.path || "/"
 
