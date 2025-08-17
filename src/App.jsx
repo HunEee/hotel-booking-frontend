@@ -16,6 +16,8 @@ import FindBooking from "./components/booking/FindBooking"
 import Login from "./components/auth/Login"
 import Registeration from "./components/auth/Registration"
 import Profile from "./components/auth/Profile"
+import Logout from "./components/auth/Logout"
+
 
 function App() {
   return (
@@ -38,7 +40,8 @@ function App() {
             <Route path="/login" element ={<Login />} />
             <Route path="/register" element ={<Registeration />} />
             <Route path="/profile" element ={<Profile />} />
-          
+            <Route path="/logout" element ={<Logout />} />
+
           </Routes>
       </Router>
       <Footer />

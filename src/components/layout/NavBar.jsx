@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Link, NavLink } from "react-router-dom"
-
+import Logout from "../auth/Logout"
 
 const NavBar = () => {
 
@@ -67,23 +67,15 @@ const NavBar = () => {
 							<ul
 								className={`dropdown-menu ${showAccount ? "show" : ""}`}
 								aria-labelledby="navbarDropdown">
-                                    <li>
-										<Link to={"/login"} className="dropdown-item" >
+								{isLoggedIn ? (
+									<Logout />
+								) : (
+									<li>
+										<Link className="dropdown-item" to={"/login"}>
 											Login
 										</Link>
 									</li>
-
-                                    <li>
-										<Link to={"/profile"} className="dropdown-item" >
-											profile
-										</Link>
-									</li>
-
-                                    <li>
-										<Link to={"/logout"} className="dropdown-item" >
-											Logout
-										</Link>
-									</li>
+								)}
 							</ul>
 						</li>
 					</ul>
